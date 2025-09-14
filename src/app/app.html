@@ -36,9 +36,8 @@
 
     --pill-accent: var(--bright-blue);
 
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -51,9 +50,8 @@
     line-height: 100%;
     letter-spacing: -0.125rem;
     margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
+    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
 
   p {
@@ -62,8 +60,8 @@
   }
 
   main {
-    width: 100%;
-    min-height: 100%;
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +74,7 @@
     max-width: 9.2rem;
   }
 
-  .content {
+  /* .content {
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -90,7 +88,7 @@
 
   .content p {
     margin-top: 1.5rem;
-  }
+  } */
 
   .divider {
     width: 1px;
@@ -180,9 +178,33 @@
       margin-block: 1.5rem;
     }
   }
+
+  .window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  input {
+    background-color: rgb(69, 79, 90);
+    color: white;
+    border-radius: 5px;
+    box-shadow: inset 0 5px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    width: 500px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  #answerText {
+    text-align: center;
+  }
 </style>
 
-<main class="main">
+<!-- <main class="main">
   <div class="content">
     <div class="left-side">
       <svg
@@ -230,14 +252,14 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title() }}</h1>
+      <h1 class="text-2xl">Hello, {{ title() }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
         @for (item of [
-          { title: 'Explore the Docs', link: 'https://angular.dev' },
+          { title: 'Explore the Docs', link: '/pages/test.html' },
           { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
           { title: 'Prompt and best practices for AI', link: 'https://angular.dev/ai/develop-with-ai'},
           { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
@@ -328,6 +350,43 @@
       </div>
     </div>
   </div>
+</main> -->
+
+<main class="bg-dark text-white main">
+  <div class="content">
+    <div class="window">
+      <h3 class="text-center">What can I help you with?</h3>
+      <div class="d-flex gap-2 justify-content-center">
+        <input type="text" id="promptText" placeholder="enter your favorite artists..." />
+        <button
+          class="btn btn-light rounded-circle"
+          id="sendButton"
+          onclick="generateAI(promptText.value)"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <div style="position: relative; width: 400px">
+      <div
+        class="spinner-border"
+        style="display: none; position: absolute; left: 50%"
+        id="loading"
+        role="status"
+      ></div>
+      <span class="visually-hidden">Loading...</span>
+      <div style="position: absolute; top: 0; flex-direction: column; display: flex">
+        <p id="answerText" class="text-center"></p>
+      </div>
+    </div>
+  </div>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://kit.fontawesome.com/873685b891.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -337,6 +396,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />
