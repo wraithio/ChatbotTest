@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 20px solid #333;
+  transition: border-left-color 0.3s ease;
+}
+
+.btn:hover .arrow-right{
+  border-left-color: #0078D7; /* subtle hover effect */
+}

@@ -4,3 +4,7 @@ import { App } from './app/app';
 
 bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));
+
+// export function askAI(prompt: string) {
+//   console.log("Prompt received: " + prompt);
+// }
